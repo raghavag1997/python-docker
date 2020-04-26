@@ -4,4 +4,5 @@ RUN apt-get update && \
     pip install flask
 Workdir app
 copy app.py .
+EXPOSE 5000
 ENTRYPOINT ["python","app.py"]
