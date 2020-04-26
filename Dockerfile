@@ -1,8 +1,7 @@
-FROM ubuntu
-RUN apt-get update && \
-    apt-get install -y python-pip && \
-    pip install flask
-Workdir app
-copy app.py .
+FROM python:3-alpine
+RUN apk update
+RUN apk add --no-cache --virtual .pynacl_deps build-base python3-dev libffi-dev curl nano wget
+WORKDIR app
+COPY app.py .
 EXPOSE 5000
-ENTRYPOINT ["python","app.py"]
+ENTRYPOINT ["python3","app.py"]
